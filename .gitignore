@@ -1,0 +1,15 @@
+# Dependencias de Node
+/node_modules
+
+# Archivos de configuración y secretos
+.env
+npm-debug.log*
+
+# Herramientas de desarrollo
+.vscode/
+.DS_Store
+*.log
+
+# Entornos de Despliegue
+.vercel/
+.nodemonlogs
