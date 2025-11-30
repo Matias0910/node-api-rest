@@ -39,6 +39,7 @@ npm install
 ```
 
 ### 3. Configurar variables de entorno
+
 Crea un archivo `.env` en la raíz del proyecto con tus credenciales de Firebase:
 
 ```env
@@ -60,6 +61,7 @@ PORT=3000
 ```
 
 ### 4. Crear colección en Firestore
+
 En tu consola de Firebase, crea una colección llamada `productos` con documentos que tengan esta estructura:
 
 ```json
@@ -97,6 +99,7 @@ npm run dev
 **Endpoint**: `POST /auth/login`
 
 **Credenciales de prueba** (simuladas en `src/services/auth.service.js`):
+
 - Usuario: `techlab`
 - Contraseña: `password123`
 
@@ -135,10 +138,10 @@ curl -X POST http://localhost:3000/auth/login \
 
 ```
 Authorization: Bearer <token>
-
 ```
 
 **Query Parameters (opcionales):**
+
 - `pageSize`: Número de productos por página (default: 20)
 - `startAfterId`: ID del último producto de la página anterior para cursor pagination
 
@@ -373,16 +376,19 @@ curl -X DELETE -H "Authorization: Bearer $TOKEN" \
 ## 🎯 Optimizaciones Implementadas
 
 ### Paginación
+
 - **Antes**: Traía TODOS los documentos de la colección por cada request → O(n) en transferencia de datos.
 - **Después**: Usa `getDocs(query)` con `limit(pageSize)` y `startAfter()` → solo trae lo necesario.
 - **Beneficio**: Reducción de latencia, ancho de banda y costo de lectura en Firestore.
 
 ### Caché en Memoria
+
 - Respuestas cacheadas por combinación de `pageSize` + `startAfterId`.
 - TTL de 10 segundos (configurable en `src/services/products.service.js`).
 - **Beneficio**: Evita llamadas repetidas a Firestore bajo tráfico similar.
 
 ### Ordenamiento
+
 - Las consultas se ordenan por `nombre` para garantizar orden consistente en paginación.
 - Considera añadir un índice en Firestore si la colección es muy grande.
 
@@ -539,6 +545,7 @@ curl -s -X DELETE -H "Authorization: Bearer $TOKEN" \
 ## 📝 Historial de Cambios
 
 ### v1.1.0 - Optimización de Rendimiento
+
 - ✅ Implementado paginación en GET productos
 - ✅ Añadido caché en memoria con TTL
 - ✅ Completado CRUD (PATCH y PUT)
@@ -546,6 +553,7 @@ curl -s -X DELETE -H "Authorization: Bearer $TOKEN" \
 - ✅ Mejora de documentación
 
 ### v1.0.0 - Versión inicial
+
 - API REST básica con autenticación JWT
 - CRUD inicial para productos
 
@@ -560,6 +568,7 @@ Salazar Matías - [@Matias0910](https://github.com/Matias0910)
 ## 📞 Soporte
 
 Si encuentras problemas:
+
 1. Verifica que el archivo `.env` esté configurado correctamente.
 2. Revisa que Firestore esté habilitado en tu proyecto de Firebase.
 3. Asegúrate de que `npm install` haya instalado todas las dependencias.
