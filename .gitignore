@@ -13,3 +13,5 @@ npm-debug.log*
 # Entornos de Despliegue
 .vercel/
 .nodemonlogs
+.vercel
+.env
