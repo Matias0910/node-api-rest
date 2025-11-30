@@ -13,23 +13,29 @@
 ## URLs de Despliegue
 
 ### Producción (Vercel)
-- **URL principal**: https://node-rest-6zkv2age3-matias0910s-projects.vercel.app
+
+- **URL principal**: <https://node-rest-6zkv2age3-matias0910s-projects.vercel.app>
 - **Estado**: Ready (desplegado y actualizado)
 - **Acceso**: Público (sin Deployment Protection)
 
 ### Alternativa de prueba local
+
 ```bash
 git clone https://github.com/Matias0910/node-api-rest.git
 cd node-api-rest
 npm install
+
 # Crea .env con credenciales de Firebase (ver .env.example)
 npm start
+
 # La API estará en http://localhost:3000
+
 ```
 
 ## Pruebas Finales (Completadas)
 
 ### ✓ Autenticación
+
 ```bash
 POST /auth/login
 {
@@ -37,16 +43,20 @@ POST /auth/login
   "password": "password123"
 }
 Respuesta: 200 OK con token JWT
+
 ```
 
 ### ✓ Obtener Productos (Paginado)
+
 ```bash
 GET /api/products?pageSize=3
 Headers: Authorization: Bearer <TOKEN>
 Respuesta: 200 OK con 3 productos, lastId, y performanceMs
+
 ```
 
 ### ✓ CRUD Completo
+
 - POST /api/products/create → 201 Created
 - PATCH /api/products/:id → 200 OK
 - PUT /api/products/:id → 200 OK
@@ -55,12 +65,14 @@ Respuesta: 200 OK con 3 productos, lastId, y performanceMs
 ## Características Entregadas
 
 ### Optimizaciones de Rendimiento
+
 - ✓ Paginación en Firestore (cursor-based)
 - ✓ Caché en memoria con TTL (10 segundos)
 - ✓ Medición de performance en cada respuesta
 - ✓ Queries ordenadas por `nombre` para consistencia
 
 ### API REST
+
 - ✓ Autenticación JWT
 - ✓ Middleware de validación
 - ✓ CRUD completo (Create, Read, Update, Delete)
@@ -68,6 +80,7 @@ Respuesta: 200 OK con 3 productos, lastId, y performanceMs
 - ✓ Respuestas JSON consistentes
 
 ### Infraestructura
+
 - ✓ Desplegado en Vercel (Node.js 24.x)
 - ✓ Variables de entorno seguras (no en repo)
 - ✓ Firebase Firestore integrado
@@ -76,11 +89,13 @@ Respuesta: 200 OK con 3 productos, lastId, y performanceMs
 ## Instrucciones para Evaluador/Profesor
 
 ### Opción 1: Probar URL Pública
-1. Copiar la URL: https://node-rest-6zkv2age3-matias0910s-projects.vercel.app
+
+1. Copiar la URL: <https://node-rest-6zkv2age3-matias0910s-projects.vercel.app>
 2. Usar Postman, cURL o el navegador para hacer requests
 3. Ejemplos en el README.md principal
 
 ### Opción 2: Clonar y Ejecutar Localmente
+
 1. Clonar: `git clone https://github.com/Matias0910/node-api-rest.git`
 2. Instalar: `npm install`
 3. Configurar `.env` (ver `.env.example`)
@@ -88,6 +103,7 @@ Respuesta: 200 OK con 3 productos, lastId, y performanceMs
 5. Probar en http://localhost:3000
 
 ### Opción 3: Revisar Documentación
+
 - **README.md**: Documentación completa con ejemplos de cURL
 - **Estructura**: `src/controllers/`, `services/`, `models/`, `routes/`
 - **Tests**: Resultados de pruebas CRUD incluidos en este documento

@@ -24,20 +24,25 @@ Una API REST moderna y optimizada para gestión de productos, construida con Nod
 ## 🔧 Instalación
 
 ### 1. Clonar repositorio
+
 ```bash
 git clone https://github.com/Matias0910/node-api-rest.git
 cd node-api-rest
+
 ```
 
 ### 2. Instalar dependencias
+
 ```bash
 npm install
+
 ```
 
 ### 3. Configurar variables de entorno
 Crea un archivo `.env` en la raíz del proyecto con tus credenciales de Firebase:
 
 ```env
+
 # Firebase Configuration
 FIREBASE_API_KEY=tu_api_key
 FIREBASE_AUTH_DOMAIN=tu_project.firebaseapp.com
@@ -51,6 +56,7 @@ JWT_SECRET=tu_secreto_jwt_super_seguro
 
 # Server Port (opcional, default: 3000)
 PORT=3000
+
 ```
 
 ### 4. Crear colección en Firestore
@@ -65,18 +71,23 @@ En tu consola de Firebase, crea una colección llamada `productos` con documento
   "activo": true,
   "sku": "TAB-PR-001"
 }
+
 ```
 
 ### 5. Iniciar servidor
+
 ```bash
 npm start
+
 ```
 
 El servidor estará disponible en `http://localhost:3000`
 
 Para modo desarrollo con reinicio automático:
+
 ```bash
 npm run dev
+
 ```
 
 ## 🔑 Autenticación
@@ -90,6 +101,7 @@ npm run dev
 - Contraseña: `password123`
 
 **Ejemplo:**
+
 ```bash
 curl -X POST http://localhost:3000/auth/login \
   -H "Content-Type: application/json" \
@@ -97,15 +109,18 @@ curl -X POST http://localhost:3000/auth/login \
     "username": "techlab",
     "password": "password123"
   }'
+
 ```
 
 **Respuesta:**
+
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "type": "Bearer",
   "expiresIn": "1h"
 }
+
 ```
 
 **Nota:** Todos los endpoints de `/api/products` requieren un Bearer token en el header `Authorization`.
@@ -117,8 +132,10 @@ curl -X POST http://localhost:3000/auth/login \
 **Endpoint**: `GET /api/products`
 
 **Headers requeridos:**
+
 ```
 Authorization: Bearer <token>
+
 ```
 
 **Query Parameters (opcionales):**
@@ -126,6 +143,7 @@ Authorization: Bearer <token>
 - `startAfterId`: ID del último producto de la página anterior para cursor pagination
 
 **Ejemplo:**
+
 ```bash
 TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 
@@ -140,9 +158,11 @@ curl -H "Authorization: Bearer $TOKEN" \
 # Segunda página (usando cursor del documento anterior)
 curl -H "Authorization: Bearer $TOKEN" \
   "http://localhost:3000/api/products?pageSize=5&startAfterId=NOwACDaeYGC9H0Hi8cWV"
+
 ```
 
 **Respuesta (200 OK):**
+
 ```json
 {
   "products": [
@@ -159,6 +179,7 @@ curl -H "Authorization: Bearer $TOKEN" \
   "lastId": "cNpmnNx8jNDtM21nUZjP",
   "performanceMs": 245
 }
+
 ```
 
 ### GET - Obtener producto por ID
@@ -166,12 +187,15 @@ curl -H "Authorization: Bearer $TOKEN" \
 **Endpoint**: `GET /api/products/:id`
 
 **Ejemplo:**
+
 ```bash
 curl -H "Authorization: Bearer $TOKEN" \
   "http://localhost:3000/api/products/cNpmnNx8jNDtM21nUZjP"
+
 ```
 
 **Respuesta (200 OK):**
+
 ```json
 {
   "id": "cNpmnNx8jNDtM21nUZjP",
@@ -182,6 +206,7 @@ curl -H "Authorization: Bearer $TOKEN" \
   "activo": true,
   "sku": "CAM-ST-FHD"
 }
+
 ```
 
 ### POST - Crear nuevo producto
@@ -189,6 +214,7 @@ curl -H "Authorization: Bearer $TOKEN" \
 **Endpoint**: `POST /api/products/create`
 
 **Body requerido:**
+
 ```json
 {
   "nombre": "Nuevo Producto",
@@ -198,9 +224,11 @@ curl -H "Authorization: Bearer $TOKEN" \
   "activo": true,
   "sku": "NEW-001"
 }
+
 ```
 
 **Ejemplo:**
+
 ```bash
 curl -X POST -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
@@ -213,9 +241,11 @@ curl -X POST -H "Authorization: Bearer $TOKEN" \
     "sku": "AUR-BT-001"
   }' \
   "http://localhost:3000/api/products/create"
+
 ```
 
 **Respuesta (201 Created):**
+
 ```json
 {
   "id": "abc123def456",
@@ -226,6 +256,7 @@ curl -X POST -H "Authorization: Bearer $TOKEN" \
   "activo": true,
   "sku": "AUR-BT-001"
 }
+
 ```
 
 ### PATCH - Actualizar parcialmente un producto
@@ -233,14 +264,17 @@ curl -X POST -H "Authorization: Bearer $TOKEN" \
 **Endpoint**: `PATCH /api/products/:id`
 
 **Body (solo los campos a actualizar):**
+
 ```json
 {
   "precio": 89.99,
   "stock": 20
 }
+
 ```
 
 **Ejemplo:**
+
 ```bash
 curl -X PATCH -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
@@ -249,15 +283,18 @@ curl -X PATCH -H "Authorization: Bearer $TOKEN" \
     "stock": 20
   }' \
   "http://localhost:3000/api/products/abc123def456"
+
 ```
 
 **Respuesta (200 OK):**
+
 ```json
 {
   "id": "abc123def456",
   "precio": 89.99,
   "stock": 20
 }
+
 ```
 
 ### PUT - Reemplazar completamente un producto
@@ -265,6 +302,7 @@ curl -X PATCH -H "Authorization: Bearer $TOKEN" \
 **Endpoint**: `PUT /api/products/:id`
 
 **Body requerido (todos los campos):**
+
 ```json
 {
   "nombre": "Producto Reemplazado",
@@ -274,11 +312,13 @@ curl -X PATCH -H "Authorization: Bearer $TOKEN" \
   "activo": true,
   "sku": "NEW-SKU"
 }
+
 ```
 
 **Nota:** PUT valida que estén presentes: `nombre`, `precio` y `stock`.
 
 **Ejemplo:**
+
 ```bash
 curl -X PUT -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
@@ -291,9 +331,11 @@ curl -X PUT -H "Authorization: Bearer $TOKEN" \
     "sku": "LAPTOP-001"
   }' \
   "http://localhost:3000/api/products/abc123def456"
+
 ```
 
 **Respuesta (200 OK):**
+
 ```json
 {
   "id": "abc123def456",
@@ -304,6 +346,7 @@ curl -X PUT -H "Authorization: Bearer $TOKEN" \
   "activo": true,
   "sku": "LAPTOP-001"
 }
+
 ```
 
 ### DELETE - Eliminar un producto
@@ -311,16 +354,20 @@ curl -X PUT -H "Authorization: Bearer $TOKEN" \
 **Endpoint**: `DELETE /api/products/:id`
 
 **Ejemplo:**
+
 ```bash
 curl -X DELETE -H "Authorization: Bearer $TOKEN" \
   "http://localhost:3000/api/products/abc123def456"
+
 ```
 
 **Respuesta (200 OK):**
+
 ```json
 {
   "message": "Producto con ID abc123def456 eliminado."
 }
+
 ```
 
 ## 🎯 Optimizaciones Implementadas
@@ -364,6 +411,7 @@ node-rest-api/
 ├── package.json             # Dependencias
 ├── .env                     # Variables de entorno (no commitear)
 └── README.md                # Este archivo
+
 ```
 
 ## 🔒 Variables de Entorno
@@ -386,15 +434,18 @@ Todas las variables de entorno deben configurarse en `.env` (archivo no versiona
 ## 🧪 Testing Manual con cURL
 
 ### 1. Login y guardar token
+
 ```bash
 TOKEN=$(curl -s -X POST http://localhost:3000/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username":"techlab","password":"password123"}' | jq -r '.token')
 
 echo $TOKEN
+
 ```
 
 ### 2. Crear producto
+
 ```bash
 PRODUCT_ID=$(curl -s -X POST -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
@@ -408,29 +459,37 @@ PRODUCT_ID=$(curl -s -X POST -H "Authorization: Bearer $TOKEN" \
   }' http://localhost:3000/api/products/create | jq -r '.id')
 
 echo "Created product: $PRODUCT_ID"
+
 ```
 
 ### 3. Obtener todos (paginado)
+
 ```bash
 curl -s -H "Authorization: Bearer $TOKEN" \
   "http://localhost:3000/api/products?pageSize=10" | jq '.'
+
 ```
 
 ### 4. Obtener por ID
+
 ```bash
 curl -s -H "Authorization: Bearer $TOKEN" \
   "http://localhost:3000/api/products/$PRODUCT_ID" | jq '.'
+
 ```
 
 ### 5. Actualizar (PATCH)
+
 ```bash
 curl -s -X PATCH -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"precio":79.99}' \
   "http://localhost:3000/api/products/$PRODUCT_ID" | jq '.'
+
 ```
 
 ### 6. Reemplazar (PUT)
+
 ```bash
 curl -s -X PUT -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
@@ -443,12 +502,15 @@ curl -s -X PUT -H "Authorization: Bearer $TOKEN" \
     "sku":"UPD-001"
   }' \
   "http://localhost:3000/api/products/$PRODUCT_ID" | jq '.'
+
 ```
 
 ### 7. Eliminar
+
 ```bash
 curl -s -X DELETE -H "Authorization: Bearer $TOKEN" \
   "http://localhost:3000/api/products/$PRODUCT_ID" | jq '.'
+
 ```
 
 ## 📊 Códigos HTTP
