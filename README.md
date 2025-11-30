@@ -506,3 +506,17 @@ Si encuentras problemas:
 ---
 
 **Última actualización**: 30 de noviembre de 2025
+
+## 📦 Despliegue (Producción)
+
+- URL de producción (deploy reciente): https://node-rest-jzc9w0vjb-matias0910s-projects.vercel.app
+
+- Estado actual: el proyecto fue desplegado en Vercel y las variables de entorno necesarias fueron añadidas.
+
+- Nota importante sobre acceso público: Vercel puede aplicar "Deployment Protection" que requiere autenticación para acceder al deployment. Si quieres que la URL sea pública y accesible por cualquier persona, en la Dashboard de Vercel ve a **Settings → Security → Deployment Protection** y desactiva la protección para este proyecto.
+
+- Alternativa segura: si prefieres mantener la protección activada, genera un *Bypass Token* en Vercel y compártelo solo para pruebas; de lo contrario, indícalo y yo puedo ejecutar pruebas remotas con ese token.
+
+---
+
+**Última actualización del despliegue**: 30 de noviembre de 2025
