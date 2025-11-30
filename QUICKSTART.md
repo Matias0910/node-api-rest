@@ -1,5 +1,7 @@
 # Node REST API - Gestor de Productos
 
+<!-- markdownlint-disable MD013 MD033 -->
+
 Una API REST profesional y optimizada para gestión de productos usando Node.js, Express y Firebase Firestore.
 
 ## 🎯 Estado del Proyecto

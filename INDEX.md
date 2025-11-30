@@ -1,5 +1,7 @@
 # node-api-rest
 
+<!-- markdownlint-disable MD013 MD033 -->
+
 > REST API profesional para gestión de productos con paginación, caché y autenticación JWT
 
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-green)
@@ -172,10 +174,5 @@ Las contribuciones son bienvenidas. Para cambios mayores:
 
 ---
 
-<div align="center">
-
-**⭐ Si te fue útil, no olvides hacer star al proyecto! ⭐**
-
+**⭐ Si te fue útil, no olvides hacer star al proyecto! ⭐**  
 [Documentación Completa](./README.md) • [Quick Start](./QUICKSTART.md)
-
-</div>

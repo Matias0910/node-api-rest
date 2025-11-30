@@ -1,5 +1,7 @@
 # REST API - Node.js + Express + Firebase
 
+<!-- markdownlint-disable MD013 MD033 -->
+
 Una API REST moderna y optimizada para gestión de productos, construida con Node.js, Express y Firestore. Incluye autenticación con JWT, paginación automática, caché en memoria y un CRUD completo.
 
 ## 🚀 Características
