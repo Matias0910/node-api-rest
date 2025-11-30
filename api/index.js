@@ -1,10 +1,7 @@
 import app from '../src/app.js';
 
 // Vercel Node.js Serverless Functions can accept a standard (req, res) handler.
-// An Express `app` is a compatible request handler function, so we can
-// directly export a wrapper that forwards requests to the Express app
-// without requiring `serverless-http`.
+// An Express app can be used directly as a request handler.
+// This wrapper ensures compatibility with Vercel's serverless environment.
 
-export default function handler(req, res) {
-	return app(req, res);
-}
+export default app;
