@@ -1,6 +1,6 @@
 // src/routes/products.routes.js
 import { Router } from 'express';
-import { getProducts, getProductById, createProduct, deleteProduct } from '../controllers/products.controller.js';
+import { getProducts, getProductById, createProduct, deleteProduct, updateProduct, replaceProduct } from '../controllers/products.controller.js';
 import authMiddleware from '../middlewares/auth.middleware.js';
 
 const router = Router();
@@ -20,5 +20,11 @@ router.post('/create', createProduct);
 
 // DELETE /api/products/:id
 router.delete('/:id', deleteProduct);
+
+// PATCH /api/products/:id
+router.patch('/:id', updateProduct);
+
+// PUT /api/products/:id
+router.put('/:id', replaceProduct);
 
 export default router;
